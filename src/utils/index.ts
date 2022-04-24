@@ -27,8 +27,8 @@ export const useDebounce = <V>(value: V, delay?: number) => {
   return debouncedValue;
 };
 
-export const useArray = (persons: { name: string; age: number }[]) => {
-  const [value, setValue] = useState(persons);
+export const useArray = <T>(initialArray: T[]) => {
+  const [value, setValue] = useState(initialArray);
 
   const clear = () => {
     setValue([]);
@@ -38,7 +38,7 @@ export const useArray = (persons: { name: string; age: number }[]) => {
     setValue([...value.slice(0, idx), ...value.slice(idx + 1)]);
   };
 
-  const add = (person: { name: string; age: number }) => {
+  const add = (person: T) => {
     setValue([...value, person]);
   };
 
