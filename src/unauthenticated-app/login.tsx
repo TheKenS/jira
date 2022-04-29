@@ -1,6 +1,5 @@
 import { FormEvent } from "react";
-
-const apiUrl = process.env.REACT_APP_API_URL;
+import { useAuth } from "context/auth-context";
 
 const headers = new Headers({
   Accept: "application/json",
@@ -8,16 +7,8 @@ const headers = new Headers({
 });
 
 export const LoginScreen = () => {
-  const login = async (param: { username: string; password: string }) => {
-    const response = await fetch(`${apiUrl}/login`, {
-      method: "POST",
-      headers: headers,
-      body: JSON.stringify(param),
-    });
-    if (response.ok) {
-      const data = await response.json();
-    }
-  };
+  const { login, user } = useAuth();
+  console.log(user);
 
   const handleSubmit = (evt: FormEvent<HTMLFormElement>) => {
     evt.preventDefault();
@@ -25,6 +16,7 @@ export const LoginScreen = () => {
     const password = (evt.currentTarget.elements[1] as HTMLInputElement).value;
     login({ username, password });
   };
+
   return (
     <form onSubmit={handleSubmit}>
       <div>
