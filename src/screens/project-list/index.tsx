@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import * as qs from "qs";
 import { cleanObject, useDebounce } from "utils";
 import { useHttp } from "utils/http";
+import styled from "@emotion/styled";
 
 const headers = new Headers({
   Accept: "application/json",
@@ -29,9 +30,14 @@ export const ProjectListScreen = () => {
   }, [debouncedParam]);
 
   return (
-    <div>
+    <Container>
+      <h1>项目列表</h1>
       <SearchPanel users={users} param={param} setParam={setParam} />
       <List users={users} list={list} />
-    </div>
+    </Container>
   );
 };
+
+const Container = styled.div`
+  padding: 3.2rem;
+`;
