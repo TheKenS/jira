@@ -1,3 +1,4 @@
+import { title } from "process";
 import { useEffect, useState } from "react";
 
 export const isFalsy = (value: unknown) => (value === 0 ? false : !value);
@@ -26,4 +27,23 @@ export const useDebounce = <V>(value: V, delay?: number) => {
   }, [value, delay]);
 
   return debouncedValue;
+};
+
+export const useDocumentTitle = (title: string, keepOnUnmount = true) => {
+  const oldTitle = document.title;
+  console.log("渲染时oldTitle: ", oldTitle);
+
+  useEffect(() => {
+    document.title = title;
+  }, [title]);
+
+  useEffect(() => {
+    return () => {
+      if (!keepOnUnmount) {
+        console.log("卸载时oldTitle: ", oldTitle);
+
+        document.title = oldTitle;
+      }
+    };
+  }, []);
 };
