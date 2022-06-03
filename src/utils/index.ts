@@ -1,5 +1,5 @@
 import { title } from "process";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 export const isFalsy = (value: unknown) => (value === 0 ? false : !value);
 export const isVoid = (value: unknown) =>
@@ -30,10 +30,7 @@ export const useDebounce = <V>(value: V, delay?: number) => {
 };
 
 export const useDocumentTitle = (title: string, keepOnUnmount = true) => {
-  const oldTitle = document.title;
-  console.log("渲染时oldTitle: ", oldTitle);
-  // 页面加载时：oldTitle === 旧title
-  // 加载后：oldTitle === 新title
+  const oldTitle = useRef(document.title).current;
 
   useEffect(() => {
     document.title = title;
@@ -42,11 +39,8 @@ export const useDocumentTitle = (title: string, keepOnUnmount = true) => {
   useEffect(() => {
     return () => {
       if (!keepOnUnmount) {
-        // 如果不指定依赖，读到的就是旧title
-        console.log("卸载时oldTitle: ", oldTitle);
-
         document.title = oldTitle;
       }
     };
-  }, []);
+  }, [keepOnUnmount, oldTitle]);
 };

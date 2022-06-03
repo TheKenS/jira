@@ -6,7 +6,6 @@ import styled from "@emotion/styled";
 import { Typography } from "antd";
 import { useProjects } from "utils/project";
 import { useUsers } from "utils/user";
-import { Test } from "./test";
 
 const headers = new Headers({
   Accept: "application/json",
@@ -26,7 +25,6 @@ export const ProjectListScreen = () => {
 
   return (
     <Container>
-      <Test />
       <h1>项目列表</h1>
       <SearchPanel users={users || []} param={param} setParam={setParam} />
       {error ? (
