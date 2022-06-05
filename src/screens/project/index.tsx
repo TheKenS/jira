@@ -1,4 +1,4 @@
-import { Link, Route, Routes } from "react-router-dom";
+import { Link, Navigate, Route, Routes } from "react-router-dom";
 import { KanbanScreen } from "screens/kanban";
 import { EpicScreen } from "screens/epic";
 
@@ -13,7 +13,7 @@ export const ProjectScreen = () => {
         <Route path={"kanban"} element={<KanbanScreen />} />
         {/*projects/:projectId/epic*/}
         <Route path={"epic"} element={<EpicScreen />} />
-        <Route index element={<KanbanScreen />} />
+        <Route index element={<Navigate to={"kanban"} replace={true} />} />
       </Routes>
     </div>
   );
