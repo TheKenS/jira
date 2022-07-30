@@ -6,11 +6,10 @@ import dayjs from "dayjs";
 // react-router-dom中，Link则需要额外处理a标签渲染、点击事件等
 import { Link } from "react-router-dom";
 
-// TODO 把所有id都改成number类型
 export interface Project {
-  id: string;
+  id: number;
   name: string;
-  personId: string;
+  personId: number;
   pin: boolean;
   organization: string;
   created: number;

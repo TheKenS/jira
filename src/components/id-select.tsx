@@ -1,8 +1,8 @@
 /*
  * @Author: sunjiajie03 sunjiajie03@kuaishou.com
  * @Date: 2022-06-16 20:38:28
- * @LastEditors: sunjiajie03 sunjiajie03@kuaishou.com
- * @LastEditTime: 2022-06-16 21:14:03
+ * @LastEditors: Please set LastEditors
+ * @LastEditTime: 2022-07-30 19:48:03
  * @FilePath: /jira/src/components/id-select.tsx
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -31,7 +31,7 @@ export const IdSelect = (props: IdSelectProps) => {
   const { value, onChange, defaultOptionName, options, ...restProps } = props;
   return (
     <Select
-      value={toNumber(value)}
+      value={options?.length ? toNumber(value) : 0}
       onChange={(value) => onChange(toNumber(value) || undefined)}
       {...restProps}
     >
